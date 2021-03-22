@@ -123,8 +123,8 @@ Logo, não seguir o princípio da substituição de liskov pode gerar graves pro
 
 \subsection{\textit{Interface Segregation} - Princípio da Segregação de Interface}
 
-Tenho q escrever ainda
+A Segregação de Interface é um caso específico do princípio da Responsabilidade Única. Nesse novo contexto utiliza-se de interfaces para separar funções das quais as classes precisam, a fim de que uma classe dependa de todas as operações de uma outra através das interfaces. Exemplificando: dado que uma classe A que dependa da classe B, mais especificamente a classe A utiliza um método b1 de B; contudo B possui os métodos b1 (utilizado por A) e b2 (não utilizado por A). O princípio da Segregação de Interface determina que deverá ser criada uma interface X que possua somente o método b1 para que A dependa de X que não possui métodos não utilizados por A \cite{arquiCleanArch}.
 
 \subsection{\textit{Dependency Inversion} - Princípio da Inversão de Dependência}
 
-Tenho q escrever ainda
+A ideia que interfaces são mais estáveis do que suas respectivas implementações é a base do princípio da Inversão de Dependência. Com isso, para seguir o princípio é preferível que nenhuma classe dependa diretamente da implementação concreta de outra classe, mas sim de uma interface. A preferência é colocada no lugar da obrigatoriedade uma vez que não é possível que uma classe seja totalmente livre da dependência de implementações concretas, contudo, um software que siga ao máximo o princípio da Inversão de Dependência vai ser mais estável do que um que não o utilize \cite{arquiCleanArch}.
