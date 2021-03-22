@@ -1,0 +1,127 @@
+\chapter[Referencial Teórico]{Referencial Teórico}
+\label{cap:referencial}
+
+\section{Android}
+\label{sec:android}
+
+Android é ao mesmo tempo um sistema operacional (SO) de código aberto e livre utilização para diversos tipos de dispositivos e um projeto de código aberto liderado pela Google  \cite{androidAndroidOpenSource}. Sendo assim, qualquer companhia que tenha interesse em utilizar um SO pronto para seus dispositivos pode utilizar e adaptar o Android a seus padrões internos de qualidade e usabilidade sem custo por essa utilização. Essa abordagem gerou um grande engajamento da comunidade e empresas uma vez que, atualmente, são mais de 2,5 bilhões de dispositivos ativos que utilizam alguma forma desse SO. As categorias de dispositivos são: smartphones, tablets, TVs, relógios de pulso e android auto \cite{androidWhatIsAndroid}. Com isso, é possível perceber a versatilidade do Android. Ademais, ser um projeto open source aumenta o dinamismo de suas mudanças e, dessa forma, torna mais fácil atender melhor o consumidor não restringindo as inovações do SO a uma só empresa \cite{androidAndroidOpenSource}.
+
+Na figura abaixo é possível observar o \textit{Software Stack}, ou a pilha de \textit{Software}, do Android. Nela é possível observar que a base de desenvolvimento do SO é um núcleo Linux, o qual também é um \textit{Software} de código aberto.
+
+\begin{figure}[h]
+    \caption{Android \textit{Software Stack}}
+    \centering
+    \includegraphics[width=.45\textwidth]{img/android stack info image.png}
+    \fonte{\cite{androidAndroidOpenSource}}
+    \label{fig:androidStack}
+\end{figure}
+
+\newpage
+\subsection{Kotlin}
+Kotlin é uma linguagem de programação de propósito genérico criada pela JetBrains e contribuidores open source bem parecida com Java, porém melhorando alguns pontos considerados importantes por seus criadores. Ela é atualmente recomendada para as seguintes funcionalidades: \textit{data-science}, back-end, front-end e aplicações móveis nativas e aplicações móveis multiplataforma \cite{androidKotlin}. Além da própria empresa afirmar sua capacidade de desenvolvimento de aplicações móveis nativas, a própria google recomenda sua utilização para desenvolvimento de aplicações Android \cite{androidKotlin-first}.
+
+Principais características do Kotlin:
+\begin{itemize}
+    \item Interoperabilidade: códigos e bibliotecas 100\% compatíveis entre Java e Kotlin.
+    \item Segura: valida valores nulos em tempo de compilação, para evitar exceções em tempo de execução.
+    \item Concisa: menos código para realizar mais funções
+\end{itemize}
+
+Como exposto na primeira característica da linguagem, Kotlin é 100\% compatível com bibliotecas Java. Então qual o motivo de escolher Kotlin? A resposta está justamente nas outras duas características principais da linguagem. Ela é mais segura que java, por causa de sua validação de valores nulos em tempo de compilação, reduzindo as chances (ou até eliminando, se usada corretamente) do programa ser abortado por causa de uma exceção levantada em tempo de execução. Além disso, Kotlin é uma linguagem mais concisa e expressiva em comparação ao Java, logo, é possível realizar mais ações com menos código escrito \cite{androidKotlin}. Outro ponto muito importante é: códigos escritos em Kotlin geralmente possuem menos code smells do que códigos escritos em Java \cite{androidKotlinVsJava}.
+
+Portanto, é de fácil compreensão o motivo dessa linguagem ser a recomendada para o desenvolvimento de aplicações nativas Android em detrimento do Java. Somado a esse fato, o novo framework Kotlin Multiplatform Mobile (KMM) que objetiva o desenvolvimento de aplicações móveis multiplataforma está cada vez mais robusto e já é utilizado em ferramentas internas por empresas como: Philips, Autodesk, Netflix, entre outros \cite{multiplataformaKotlinMultiplatform}.
+
+\cite{multiplataformaMedicalKit}
+
+\section{iOS}
+\label{sec:ios}
+\cite{iosStartDevIos}
+
+\subsection{Swift}
+\cite{iosSwift}
+\cite{iosSwiftUI}
+
+\section{Princípios de projeto}
+\label{sec:principiosProjeto}
+A manutenabilidade de um sistema é uma pricipais características que influenciam na qualidade de um software, quanto mais fácil é a manutenção de um sistema, maior sua qualidade \cite{arquiMonografiaKecia}. Decorrente dessa informação, três tópicos foram levantados como pontos principais para facilitar a manutenção de um projeto de \textit{software} \cite{arquiEngSoftModerna}. São eles:
+
+\begin{enumerate}
+  \item Ocultamento de Informação: define que operações dinâmicas de um módulo não devem ser conhecidas pelo cliente. Isso faz com que alterações nessas partes dinâmicas não gerem modificações nos clientes desse módulo.
+  \item Coesão: assim como a própria definição da palavra, é o grau de harmonia que as operações de um módulo tem entre si \cite{triviaDicio}. Dessa forma, o módulo deveria ser resposável somente por funcionalidades que gerem somente \textbf{um} motivo para alterações nele mesmo \cite{arquiEngSoftModerna} - motivo no sentido negocial da regra, excluindo correções de bugs e alterações técnicas.
+  \item Acoplamento: é a definição do nível de interdependência entre dois módulos. Quanto mais dependente um módulo é do outro, maior o acoplamento entre eles.
+\end{enumerate}
+
+Em suma, para construir um \textit{software} de boa qualidade é necessário que: oculte as informações dinâmicas de um módulo; que o módulo seja coeso internamente; e que tenha o mínimo de acoplamento com outros módulos. Para atingir esses objetivos foram criados os princípios de projetos, os quais são diretrizes mais concretas que os desenvolvedores conseguem e devem seguir. Entre os vários pricípios de projetos, serão apresentados 5 que são conhecidos como padrão SOLID \cite{arquiCleanArch}.
+
+\subsection{\textit{Single Responsibility} - Princípio da Responsabilidade Única}
+A definição do princípio da responsabilidade única é que um módulo deve ter um, e somente um, motivo para alteração. Em outras palavras o módulo deve atender a um único cliente/\textit{stakeholder} ou "grupo de interesse" \cite{arquiCleanArch}. Logo, esse princípio pode ser utilizado em diferentes níveis do software: a nível de classes e funções; a nível de componente; e, o mais importante para o estudo em questão, a nível arquitetural do software relacionando responsabilidades e os limites de cada camada da arquitetura. Além disso, o princípio condiz diretamente com a coesão de um módulo, ou seja, se for seguido, a coesão do módulo será maior \cite{arquiEngSoftModerna}.
+
+
+O q é:
+Objetivo:
+Ex:
+
+\subsection{\textit{Open Closed} - Princípio Aberto/Fechado}
+O princípio Aberto/Fechado defende que um módulo deve ser aberto para ser extendido e adptado à novas funcionalidades, contudo não deverá sofrer alterações internas para se adaptar à essas novas funcionalidades \cite{arquiCleanArch}. Para que isso ocorra é necessário que o desenvolvedor separe o módulo em componenentes de maneira a possibilitar a extensão de sua solução para o acréscimo de novas funcionalidades ao módulo sem acessar ou modificar o módulo em questão e ainda ocultar informações desnecessárias à extensibilidade do módulo.
+
+\subsection{\textit{Liskov Substitution} - Princípio da Substituição de Liskov}
+A substituição de liskov determina que classes que extendam métodos não podem quebrar os contratos dos métodos da classe extendida. Para facilitar o entendimento desse princípio segue um exemplo que quebra este princípio:
+
+Uma classe Quadrilátero, que representa um quadrilátero qualquer, possui uma função calculaArea() que utiliza-se da equação  \begin{math}
+base * altura = area\end{math} para calcular sua área, assim como demostrado no código \ref{code:quadrilatero}.
+
+\begin{scriptsize}
+\estiloJava
+\begin{lstlisting}[caption={Classe Quadrilatero}, label=code:quadrilatero]
+class Quadrilatero {
+    int base;
+    int altura;
+    
+    int calculaArea(){
+        return base * altura
+    }
+    
+    ...
+}
+\end{lstlisting}
+\end{scriptsize}
+
+Existe também uma classe Quadrado no código \ref{code:quadrado}, que, por ser um tipo específico de quadrilátero, extende a classe Quadrilatero a fim de se tornar um subtipo dessa classe. Porém, como um quadrado possui sua base igual a sua altura a equação utilizada para calcular sua área é a equação \begin{math}base * base = area\end{math}.
+
+\begin{scriptsize}
+\estiloJava
+\begin{lstlisting}[caption={Classe Quadrado}, label=code:quadrado]
+class Quadrado extends Quadrilatero{
+    int base;
+    int altura;
+    
+    override int calculaArea(){
+        return base * base
+    }
+    
+    ...
+}
+\end{lstlisting}
+\end{scriptsize}
+
+Esse cálculo não é errado para o contexto de um quadrado. Entretanto, ao se utilizar uma instância da classe Quadrado como um Quadrilátero o cáculo da área poderia dar errado, assim como representado no código \ref{code:testeQuadrado}, uma vez que a área esperada é 10, mas irá resultar 25.
+
+\begin{scriptsize}
+\estiloJava
+\begin{lstlisting}[caption={Teste quadrilátero}, label=code:testeQuadrado]
+void main(){
+    Quadrilatero quadrilatero = new Quadrado();
+    quadrilatero.setAltura(2);
+    quadrilatero.setBase(5);
+    
+    assert(quadrilatero.calculaArea() == 10);
+}
+\end{lstlisting}
+\end{scriptsize}
+
+Logo, não seguir o princípio da substituição de liskov pode gerar graves problemas; e a solução que ainda ferisse o princípio, aumentaria o custo de manutenção do sistema \cite{arquiCleanArch}. 
+
+\subsection{\textit{Interface Segregation} - Princípio da Segregação de Interface}
+
+
+\subsection{\textit{Dependency Inversion} - Princípio da Inversão de Dependência}
