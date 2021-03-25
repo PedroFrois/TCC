@@ -6,7 +6,7 @@
 
 Android é ao mesmo tempo um sistema operacional (SO) de código aberto e livre utilização para diversos tipos de dispositivos e um projeto de código aberto liderado pela Google  \cite{androidAndroidOpenSource}. Sendo assim, qualquer companhia que tenha interesse em utilizar um SO pronto para seus dispositivos pode utilizar e adaptar o Android a seus padrões internos de qualidade e usabilidade sem custo por essa utilização. Essa abordagem gerou um grande engajamento da comunidade e empresas uma vez que, atualmente, são mais de 2,5 bilhões de dispositivos ativos que utilizam alguma forma desse SO. As categorias de dispositivos são: smartphones, tablets, TVs, relógios de pulso e Android auto \cite{androidWhatIsAndroid}. Com isso, é possível perceber a versatilidade do Android. Ademais, ser um projeto \textit{open source} aumenta o dinamismo de suas mudanças e, dessa forma, torna mais fácil atender melhor o consumidor não restringindo as inovações do SO a uma só empresa \cite{androidAndroidOpenSource}.
 
-Na figura abaixo é possível observar o \textit{Software Stack}, ou a pilha de \textit{Software}, do Android. Nela é possível observar que a base de desenvolvimento do SO é um núcleo Linux, o qual também é um \textit{Software} de código aberto.
+Na figura \ref{fig:androidStack} é possível observar o \textit{Software Stack}, ou a pilha de \textit{Software}, do Android que seria a arquitetura genérica de um \textit{smartphone} que utilize esse SO. Nela é possível observar que a base de desenvolvimento do SO é um kernel Linux \cite{triviaTanenbaum2015modern}, o qual também é um \textit{Software} de código aberto.
 
 \begin{figure}[h]
     \caption{Android \textit{Software Stack}}
@@ -35,11 +35,29 @@ Portanto, é de fácil compreensão o motivo dessa linguagem ser a recomendada p
 
 \section{iOS}
 \label{sec:ios}
-\cite{iosStartDevIos}
+O iOS é o sistema operacional criado e utilizado, exclusivamente, pela Apple Inc. em seus smartphones \cite{iosIOS14}. Uma vez que é um SO desenvolvido especificamente para dispositivos da própria empresa, uma integração bem maior, e mais bem cosntruída que em Android, é feita entre hardware e software \cite{iosSheikh2013smartphone}. Podemos observar essa integração na figura \ref{fig:iosStack}.
+
+\begin{figure}[h]
+    \caption{Arquitetura iPhone}
+    \centering
+    \includegraphics[width=.65\textwidth]{img/iphoneArchitecture.png}
+    \fonte{\cite{iosSheikh2013smartphone}}
+    \label{fig:iosStack}
+\end{figure}
+
+Além disso, o iOS utiliza-se de uma parte do darwin para seu \textit{kernel} \cite{triviaTanenbaum2015modern}. O darwin é outro sistema operacional desenvolvido pela Apple e, apesar de ser um SO tipo Unix, seus criadores deixaram claro que o kernel, xnu, utilizado pelo darwin não é Unix, uma vez que o acrônimo de xnu é \textit{X is Not Unix} ou traduzido "X Não é Unix" \cite{iosDarwinXnu}.
 
 \subsection{Swift}
-\cite{iosSwift}
-\cite{iosSwiftUI}
+Swift é a linguagem de programação de propósito geral criada e recomendada pela Apple para o desenvolvimento de softwares para todo o ecossistema da própria empresa, \cite{iosStartDevIos,iosSwift}. Assim como o Kotlin, realiza teste de nulidade para evitar \textit{crashs} inesperados no software. Ainda possui as seguintes características sengundo a própria Apple \cite{iosSwift}:
+
+\begin{itemize}
+  \item open source;
+  \item rápida e poderosa;
+  \item interoperabilidade com a linguagem Objective-C (antigamente utilizada para desenvolvimento de softwares para o ecossistema Apple).
+\end{itemize}
+
+Outro ponto relevante a ser mencionado sobre a linguagem é a possibilidade de uso da biblioteca SwiftUi que possibilita o desenvolvimento de interfaces de usuário de forma declarativa. Isso faz com que o desenvolvimento seja mais produtivo, somado à compatibilidade nativa dessa interface com todos dispositivos Apple \cite{iosSwiftUI}.
+
 
 \section{Princípios de projeto}
 \label{sec:principiosProjeto}
@@ -55,11 +73,6 @@ Em suma, para construir um \textit{software} de boa qualidade é necessário que
 
 \subsection{\textit{Single Responsibility} - Princípio da Responsabilidade Única}
 A definição do princípio da responsabilidade única é que um módulo deve ter um, e somente um, motivo para alteração. Em outras palavras o módulo deve atender a um único cliente/\textit{stakeholder} ou "grupo de interesse" \cite{arquiCleanArch}. Logo, esse princípio pode ser utilizado em diferentes níveis do software: a nível de classes e funções; a nível de componente; e, o mais importante para o estudo em questão, a nível arquitetural do software relacionando responsabilidades e os limites de cada camada da arquitetura. Além disso, o princípio condiz diretamente com a coesão de um módulo, ou seja, se for seguido, a coesão do módulo será maior \cite{arquiEngSoftModerna}.
-
-
-O q é:
-Objetivo:
-Ex:
 
 \subsection{\textit{Open Closed} - Princípio Aberto/Fechado}
 O princípio Aberto/Fechado defende que um módulo deve ser aberto para ser extendido e adptado à novas funcionalidades, contudo não deverá sofrer alterações internas para se adaptar à essas novas funcionalidades \cite{arquiCleanArch}. Para que isso ocorra é necessário que o desenvolvedor separe o módulo em componenentes de maneira a possibilitar a extensão de sua solução para o acréscimo de novas funcionalidades ao módulo sem acessar ou modificar o módulo em questão e ainda ocultar informações desnecessárias à extensibilidade do módulo.
