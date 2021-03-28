@@ -1,18 +1,37 @@
 \chapter[Trabalhos Relacionados]{Trabalhos Relacionados}
 \label{cap:trabalhosRelacionados}
 
-Trabalhos Relacionados (2 a 4 páginas)
+O primeiro trabalho relacionado tem título \textit{"Design and development of a multi-platform software development kit of a mobile medical device"} que pode ser traduzido diretamente para "Desenho e desenvolvimento de um kit de desenvolvimento de \textit{software} (SDK) multiplataforma de um dispositivo médico móvel". O objetivo principal desse trabalho é a criação de um SDK a ser utilizado pela empresa Popit Oy \cite{triviaPopit}. Além disso, o trabalho tem objetivos secundários como listar princípios do estado da arte para desenvolvimento de SDKs e validar as seguintes hipóteses: se a arquitetura proposta atende os requisitos não funcionais do produto; e se o \textit{framework} Kotlin Multiplatfom Mobile já está maduro o suficiente para uso empresarial. 
 
-1. Para cada trabalho relacionado, apresentar: objetivo, metodologia e resultados (1 a 2
-parágrafos por trabalho relacionado)
+Para responder todas as questões levantadas e atingir os objetivos propostos a metodologia do trabalho foi dividida em três etapas principais: 
 
-2. Depois que apresentar o resumo de cada trabalho relacionado, escrever 1 a 2
-parágrafos mostrando porque o seu trabalho é diferente desses que foram citados
+\begin{enumerate}
+    \item pesquisa das melhores práticas de desenvolvimento de SDKs;
+    \item desenvolvimento da SDK;
+    \item e, por fim, a validação de seu trabalho.
+\end{enumerate}
 
-\cite{multiplataformaCross-plataform-diva}
-\cite{multiplataforma-IEEE}
-\cite{multiplataformaMedicalKit}
+Eke atingiu o objetivo principal do trabalho, entretanto, os resultados obtidos sugerem que, apesar de ter conseguido desenvolver um SDK que atendesse a todos os requisitos não funcionais do projeto, o framework Kotlin Multiplatform Mobile (KMM) não é recomendado para uso empresarial. Contudo, em sua conclusão sugeriu que esse cenário provavelmente mudaria ao final do ano de 2019 com novas atualizações do Kotlin, dado que o maior motivo dos desafios do desenvolvimento utilizando esse \textit{framework} foi sua \textbf{infantilidade}. Ademais, acrescentou que com a resolução desses pequenos desafios, o KMM se tornará o padrão para desenvolvimento multiplataforma para compartilhamento de regras de negócio \cite{multiplataformaMedicalKit}.
 
-O primeiro trabalho relacionado tem título \textit{"Design and development of a multi-platform software development kit of a mobile medical device"} que pode ser traduzido diretamente para "Desenho e desenvolvimento de um kit de desenvolvimento de \textit{software} (SDK) multiplataforma de um dispositivo médico móvel". O objetivo principal desse trabalho é a criação de um SDK a ser utilizado pela empresa Popit Oy \cite{triviaPopit}. Além disso, o trabalho tem objetivos secundários como listar princípios do estado da arte para desenvolvimento de SDKs e validar as seguintes hipóteses: se a arquitetura proposta atende os requisitos não funcionais do produto; Kotlin Multiplatfom Mobile já está madura o suficiente para uso de empresas. 
 
-Para responder todas as questões levantadas e atingir os objetivos propostos a metodologia do trabalho foi dividida em três etapas: pesquisa das melhores práticas de desenvolvimento de SDKs; desenvolvimento da SDK; e, por fim, a validação de seu trabalho.
+O último trabalho relacionado propõe uma forma de desenvolvimento para aplicações multiplataforma que consiste na criação de duas aplicações específicas para cada plataforma e uma biblioteca, ou SDK, para compartilhamento de código comum \cite{multiplataforma-IEEE}. Para avaliar a proposta foi realizado um estudo empírico em que o autor desenvolveu uma aplicação multiplataforma Java e Android e relatou sua opinião sobre os procedimentos propostos. Foi concluído que a abordagem mais prática para o desenvolvimento seria:
+\begin{itemize}
+    \item caso de funcionalidades mais básicas e bem conhecidas, primeiro desenvolver para o SDK comum e despois para as aplicações específicas;
+    \item caso a funcionalidade seja complexa e não tão bem conhecida: é melhor desenvolver para uma aplicação específica e, após solucionado o problema, generalizar a solução para exportá-la para o SDK comum e depois utilizar a solução genérica nas duas aplicações específicas.
+\end{itemize}
+Outros resultados e observações do autor são que o código dividido conforme a abordagem multiplataforma fica mais verboso, porém, 37\%~40\% do código foi reutilizado fazendo com que a manutenção fosse bem mais fácil e eficaz, podendo assim, aumentar a qualidade da aplicação.
+  
+O segundo trabalho relacionado faz uma análise comparativa entre o desenvolvimento de aplicações nativas iOS e Android e aplicações utilizando o KMM. O objetivo do trabalho é responder as seguintes questões: 
+\begin{enumerate}
+    \item Quais são os efeitos do uso do KMM na percepção do usuário?
+    \item Quais são os efeitos do uso do KMM analisando a aplicação instalada?
+    \item Quais são os efeitos do uso do KMM quanto à produtividade do desenvolvedor?
+\end{enumerate}
+Com o foco na resolução dessas questões Evert definiu as métricas a serem utilizadas: tempo de inicialização da aplicação; tamanho em memória da aplicação; e, para análise de produtividade, a quantidade de linhas de código e o tempo de \textit{build} do projeto. Além disso definiu um projeto com utilidade real para sua avalização ser mais fiel ao mercado. Seguindo o proposto a autora chegou atingiu seu objetivo. Os resultados serão expostos de maneira resumida, para não fugir do escopo deste trabalho. Resultados:
+\begin{itemize}
+    \item tamanho da aplicação: a aplicação multiplataforma é um pouco maior do que a nativa para os dois sistemas operacionais. Mais especificamente, 13\% e 18\% maior no Android e iOS, respectivamente.
+    \item o tempo de inicialização da aplicação foi um pouco maior em Android ao se utilizar a abordagem multiplataforma - aumentou de 587,4ms na média para 675,6ms. Já em iOS não se observou alteração no tempo de inicialização
+    \item linhas de código: a soma das linhas de código dos projetos nativos Android e iOS chegou a 494. Sendo que na abordagem utilizando KMM o total de linhas de código foram 383. Isso corresponde a uma redução de 18\%.
+    \item o tempo de \textit{build}: tanto em Android quanto em iOS houve acréscimo no tempo de \textit{build}.
+\end{itemize}
+Na conclusão, Evert comenta que o ganhos de produtividade obtidos com a redução de linhas de código podem ser superados pela perda de produtividade ocasionada por tempos de \textit{build} maiores. Além disso, se o tamanho da aplicação e o tempo de inicialização forem essenciais para o projeto, KMM pode não ser a melhor opção a ser utilizada \cite{multiplataformaCross-plataform-diva}.
