@@ -20,6 +20,7 @@ Na figura \ref{fig:androidStack} observa-se o \textit{Software Stack} do Android
     \label{fig:androidStack}
 \end{figure}
 
+%===================================================================================================================
 \newpage
 \subsection{Kotlin}
 Kotlin é uma linguagem de programação de propósito genérico criada pela JetBrains e contribuidores \textit{open source}, que, não obstante guardar similitude com o Java, apresenta melhoria em alguns pontos considerados importantes por seus criadores. 
@@ -37,7 +38,8 @@ Conforme exposto, o Kotlin é 100\% compatível com bibliotecas Java. Então, qu
 
 Portanto, é de fácil compreensão o motivo dessa linguagem ser a recomendada para o desenvolvimento de aplicações nativas Android em detrimento do Java. Somado a esse fato, o novo \textit{framework} Kotlin Multiplatform Mobile (KMM) que objetiva o desenvolvimento de aplicações móveis multiplataforma está cada vez mais robusto e já é utilizado em ferramentas internas por empresas como: Philips, Autodesk, Netflix, entre outras \cite{multiplataformaKotlinMultiplatform}.
 
-
+%===================================================================================================================
+%===================================================================================================================
 \section{iOS}
 \label{sec:ios}
 O iOS é o sistema operacional criado e utilizado, exclusivamente, pela Apple Inc. em seus smartphones \cite{iosIOS14}. Uma vez que se trate de um SO desenvolvido especificamente para dispositivos da própria empresa, a integração entre \textit{hardware} e \textit{software} é bem maior e melhor construída do que em comparação ao Android \cite{iosSheikh2013smartphone}. Essa integração pode ser observada na Figura \ref{fig:iosStack}: 
@@ -52,6 +54,8 @@ O iOS é o sistema operacional criado e utilizado, exclusivamente, pela Apple In
 
 Além disso, o iOS utiliza-se de uma parte do Darwin para seu \textit{kernel} \cite{triviaTanenbaum2015modern}, que se trata de outro sistema operacional desenvolvido pela Apple. Apesar de ser um SO tipo Unix, seus criadores deixaram claro que o \textit{kernel}, xnu, utilizado pelo Darwin não é Unix, uma vez que o acrônimo de xnu é \textit{"X is Not Unix"} ou traduzido "X Não é Unix" \cite{iosDarwinXnu}.
 
+
+%===================================================================================================================
 \subsection{Swift}
 Swift é a linguagem de programação de propósito geral criada e recomendada pela Apple para o desenvolvimento de \textit{softwares} para todo o ecossistema da própria empresa, \cite{iosStartDevIos,iosSwift}. Assim como o Kotlin, realiza teste de nulidade para evitar \textit{crashs} inesperados no software. 
 
@@ -65,30 +69,41 @@ Segundo a Apple, suas características são as seguintes \cite{iosSwift}:
 
 Outro ponto relevante a ser mencionado sobre essa linguagem é a possibilidade de uso da biblioteca SwiftUi que possibilita o desenvolvimento de interfaces de usuário de forma declarativa. Isso faz com que o desenvolvimento seja mais produtivo, somado à compatibilidade nativa dessa interface com todos dispositivos Apple \cite{iosSwiftUI}.
 
+%===================================================================================================================
+%===================================================================================================================
 
 \section{Princípios de projeto}
 \label{sec:principiosProjeto}
-A manutenabilidade de um sistema é uma pricipais características que influenciam na qualidade de um software, quanto mais fácil é a manutenção de um sistema, maior sua qualidade \cite{arquiMonografiaKecia}. Decorrente dessa informação, três tópicos foram levantados como pontos principais para facilitar a manutenção de um projeto de \textit{software} \cite{arquiEngSoftModerna}. São eles:
+A manutenibilidade de um sistema é uma das principais características que influenciam na qualidade de um \textit{software} \cite{arquiMonografiaKecia}. A partir dessa informação, foram levantados três tópicos como principais pontos para facilitar a manutenção de um projeto de \textit{software} \cite{arquiEngSoftModerna}. São eles:
 
 \begin{enumerate}
-  \item Ocultamento de Informação: define que operações dinâmicas de um módulo não devem ser conhecidas pelo cliente. Isso faz com que alterações nessas partes dinâmicas não gerem modificações nos clientes desse módulo.
-  \item Coesão: assim como a própria definição da palavra, é o grau de harmonia que as operações de um módulo tem entre si \cite{triviaDicio}. Dessa forma, o módulo deveria ser resposável somente por funcionalidades que gerem somente \textbf{um} motivo para alterações nele mesmo \cite{arquiEngSoftModerna} - motivo no sentido negocial da regra, excluindo correções de bugs e alterações técnicas.
+  \item Ocultamento de Informação: estabelece que operações dinâmicas de um módulo não devem ser conhecidas pelo cliente. Isso faz com que alterações nessas partes dinâmicas não gerem modificações nos clientes desse módulo.
+  
+  \item Coesão: assim como a própria definição da palavra, é o grau de harmonia que as operações de um módulo possuem entre si \cite{triviaDicio}. Dessa forma, o módulo deveria ser responsável somente por funcionalidades que gerem somente \textbf{um} motivo\footnote{motivo no sentido negocial da regra, excluindo correções de \textit{bugs} e alterações técnicas} para alterações nele mesmo \cite{arquiEngSoftModerna}.
+  
   \item Acoplamento: é a definição do nível de interdependência entre dois módulos. Quanto mais dependente um módulo é do outro, maior o acoplamento entre eles.
 \end{enumerate}
 
-Em suma, para construir um \textit{software} de boa qualidade é necessário que: oculte as informações dinâmicas de um módulo; que o módulo seja coeso internamente; e que tenha o mínimo de acoplamento com outros módulos. Para atingir esses objetivos foram criados os princípios de projetos, os quais são diretrizes mais concretas que os desenvolvedores conseguem e devem seguir. Entre os vários pricípios de projetos, serão apresentados 5 que são conhecidos como padrão SOLID \cite{arquiCleanArch}.
+Em suma, para construir um \textit{software} de boa qualidade é necessário ocultar as informações dinâmicas de um módulo; que o módulo seja coeso internamente; e que tenha o mínimo de acoplamento com outros módulos. Para atingir esses objetivos, foram criados os princípios de projetos, que traduzem em diretrizes mais concretas que os desenvolvedores conseguem e devem seguir. Entre os vários princípios de projetos, serão apresentados 05 (cinco), conhecidos como padrão SOLID \cite{arquiCleanArch}.
 
+%===================================================================================================================
 \subsection{\textit{Single Responsibility} - Princípio da Responsabilidade Única}
-A definição do princípio da responsabilidade única é que um módulo deve ter um, e somente um, motivo para alteração. Em outras palavras o módulo deve atender a um único cliente/\textit{stakeholder} ou "grupo de interesse" \cite{arquiCleanArch}. Logo, esse princípio pode ser utilizado em diferentes níveis do software: a nível de classes e funções; a nível de componente; e, o mais importante para o estudo em questão, a nível arquitetural do software relacionando responsabilidades e os limites de cada camada da arquitetura. Além disso, o princípio condiz diretamente com a coesão de um módulo, ou seja, se for seguido, a coesão do módulo será maior \cite{arquiEngSoftModerna}.
+A definição do princípio da responsabilidade única é que um módulo deve ter um, e somente um, motivo para alteração. Em outras palavras o módulo deve atender a um único cliente/\textit{stakeholder} ou "grupo de interesse" \cite{arquiCleanArch}. 
 
+Logo, esse princípio pode ser utilizado em diferentes níveis do \textit{software}: a nível de classes e funções; a nível de componente; e, o mais importante para o estudo em questão, a nível arquitetural do \textit{software} relacionando responsabilidades e os limites de cada camada da arquitetura. Além disso, o princípio condiz diretamente com a coesão de um módulo, ou seja, se seguido, a coesão do módulo será maior \cite{arquiEngSoftModerna}.
+
+%===================================================================================================================
 \subsection{\textit{Open Closed} - Princípio Aberto/Fechado}
-O princípio Aberto/Fechado defende que um módulo deve ser aberto para ser extendido e adptado à novas funcionalidades, contudo não deverá sofrer alterações internas para se adaptar à essas novas funcionalidades \cite{arquiCleanArch}. Para que isso ocorra é necessário que o desenvolvedor separe o módulo em componenentes de maneira a possibilitar a extensão de sua solução para o acréscimo de novas funcionalidades ao módulo sem acessar ou modificar o módulo em questão e ainda ocultar informações desnecessárias à extensibilidade do módulo.
+O princípio Aberto/Fechado defende que um módulo deve ser aberto para ser estendido e adaptado à novas funcionalidades, contudo, não deverá sofrer alterações internas para se adaptar à elas \cite{arquiCleanArch}.
 
+Para que isso ocorra é necessário que o desenvolvedor separe o módulo em componentes de maneira a possibilitar a extensão de sua solução para o acréscimo de novas funcionalidades sem acessá-lo e, ainda, ocultar informações desnecessárias à sua extensibilidade.
+
+%===================================================================================================================
 \subsection{\textit{Liskov Substitution} - Princípio da Substituição de Liskov}
-A substituição de liskov determina que classes que extendam métodos não podem quebrar os contratos dos métodos da classe extendida. Para facilitar o entendimento desse princípio segue um exemplo que quebra este princípio:
+A Substituição de Liskov determina que classes que estendam métodos não podem quebrar os contratos dos métodos da classe estendida. Para facilitar o entendimento desse princípio, segue um exemplo de quebra:
 
 Uma classe Quadrilátero, que representa um quadrilátero qualquer, possui uma função calculaArea() que utiliza-se da equação  \begin{math}
-base * altura = area\end{math} para calcular sua área, assim como demostrado no código \ref{code:quadrilatero}.
+base * altura = area\end{math} para calcular sua área, assim demostrado no Código \ref{code:quadrilatero}.
 
 \begin{scriptsize}
 \estiloJava
@@ -106,7 +121,7 @@ class Quadrilatero {
 \end{lstlisting}
 \end{scriptsize}
 
-Existe também uma classe Quadrado no código \ref{code:quadrado}, que, por ser um tipo específico de quadrilátero, extende a classe Quadrilatero a fim de se tornar um subtipo dessa classe. Porém, como um quadrado possui sua base igual a sua altura a equação utilizada para calcular sua área é a equação \begin{math}base * base = area\end{math}.
+Existe também uma classe Quadrado no Código \ref{code:quadrado}, que, por ser um tipo específico de quadrilátero, estende a classe Quadrilatero a fim de se tornar um subtipo dessa classe. Porém, como um quadrado possui sua base igual a sua altura a equação utilizada para calcular sua área é a equação \begin{math}base * base = area\end{math}.
 
 \begin{scriptsize}
 \estiloJava
@@ -124,7 +139,7 @@ class Quadrado extends Quadrilatero{
 \end{lstlisting}
 \end{scriptsize}
 
-Esse cálculo não é errado para o contexto de um quadrado. Entretanto, ao se utilizar uma instância da classe Quadrado como um Quadrilátero o cáculo da área poderia dar errado, assim como representado no código \ref{code:testeQuadrado}, uma vez que a área esperada é 10, mas irá resultar 25.
+Esse cálculo não está incorreto para o contexto de um quadrado. Entretanto, ao se utilizar uma instância da classe Quadrado como um Quadrilatero, o cálculo da área poderia apresentar erros, consoante representado no Código \ref{code:testeQuadrado}, uma vez que a área esperada é 10, mas irá resultar em 25.
 
 \begin{scriptsize}
 \estiloJava
@@ -139,12 +154,18 @@ void main(){
 \end{lstlisting}
 \end{scriptsize}
 
-Logo, não seguir o princípio da substituição de liskov pode gerar graves problemas; e a solução que ainda ferisse o princípio, aumentaria o custo de manutenção do sistema \cite{arquiCleanArch}. 
+Logo, não seguir o princípio da Substituição de Liskov pode gerar graves problemas, além de aumentar o custo de manutenção do sistema \cite{arquiCleanArch}. 
 
+%===================================================================================================================
 \subsection{\textit{Interface Segregation} - Princípio da Segregação de Interface}
 
-A Segregação de Interface é um caso específico do princípio da Responsabilidade Única. Nesse novo contexto utiliza-se de interfaces para separar funções das quais as classes precisam, a fim de que uma classe dependa de todas as operações de uma outra através das interfaces. Exemplificando: dado que uma classe A que dependa da classe B, mais especificamente a classe A utiliza um método b1 de B; contudo B possui os métodos b1 (utilizado por A) e b2 (não utilizado por A). O princípio da Segregação de Interface determina que deverá ser criada uma interface X que possua somente o método b1 para que A dependa de X que não possui métodos não utilizados por A \cite{arquiCleanArch}.
+A Segregação de Interface é um caso específico do princípio da Responsabilidade Única. Nesse novo contexto, utiliza-se de interfaces para separar funções das quais as classes precisam, a fim de que uma classe dependa de todas as operações de uma outra através das interfaces. 
 
+Exemplificando: dado que uma classe A, que dependa da classe B, utilize um método b1, contudo, B possui os métodos b1 (utilizado por A) e b2 (não utilizado por A). O princípio da Segregação de Interface determina que deverá ser criada uma interface X que possua somente o método b1 para que A dependa de X, que, por sua vez, não possui métodos não utilizados por A \cite{arquiCleanArch}.
+
+%===================================================================================================================
 \subsection{\textit{Dependency Inversion} - Princípio da Inversão de Dependência}
 
-A ideia que interfaces são mais estáveis do que suas respectivas implementações é a base do princípio da Inversão de Dependência. Com isso, para seguir o princípio é preferível que nenhuma classe dependa diretamente da implementação concreta de outra classe, mas sim de uma interface. A preferência é colocada no lugar da obrigatoriedade uma vez que não é possível que uma classe seja totalmente livre da dependência de implementações concretas, contudo, um software que siga ao máximo o princípio da Inversão de Dependência vai ser mais estável do que um que não o utilize \cite{arquiCleanArch}.
+A ideia base do princípio da Inversão da Dependência consiste na ideia de que interfaces são mais estáveis do que suas respectivas implementações. Com isso, para seguir o princípio é preferível que nenhuma classe dependa diretamente da implementação concreta de outra classe, mas sim de uma interface. A preferência é colocada no lugar da obrigatoriedade uma vez que não é possível que uma classe seja totalmente livre da dependência de implementações concretas. 
+
+Contudo, o \textit{software} que siga ao máximo o princípio da Inversão de Dependência será mais estável do que aquele que não o utiliza \cite{arquiCleanArch}.
