@@ -1,31 +1,29 @@
 \chapter[Trabalhos Relacionados]{Trabalhos Relacionados}
 \label{cap:trabalhosRelacionados}
 
-O primeiro trabalho relacionado é intitulado \textit{"Design and development of a multi-platform software development kit of a mobile medical device"}, que pode ser traduzido diretamente para "Desenho e desenvolvimento de um kit de desenvolvimento de \textit{software} (SDK) multiplataforma de um dispositivo médico móvel". 
-
-O objetivo principal desse trabalho é a criação de um SDK a ser utilizado pela empresa Popit Oy \cite{triviaPopit}. No plano secundário, tem por objetivos listar princípios do estado da arte para desenvolvimento de SDKs e validar as seguintes hipóteses: se a arquitetura proposta atende aos requisitos não funcionais do produto e se o \textit{framework} Kotlin Multiplatfom Mobile já está maduro o suficiente para uso empresarial. 
+Eke (2019) propõe um SDK (Software Development Kit) a ser utilizado pela empresa Popit Oy \cite{triviaPopit}. No plano secundário, tem por objetivos listar princípios do estado da arte para desenvolvimento de SDKs e validar as seguintes hipóteses: se a arquitetura proposta atende aos requisitos não funcionais do produto e se o \textit{framework} Kotlin Multiplatfom Mobile já está maduro o suficiente para uso empresarial. 
 
 Para responder todas as questões levantadas e atingir os objetivos propostos a metodologia do trabalho foi dividida em três etapas principais: 
 
 \begin{enumerate}
-    \item Pesquisa das melhores práticas de desenvolvimento de SDKs;
-    \item Desenvolvimento da SDK;
-    \item E, por fim, a validação de seu trabalho.
+    \item pesquisa das melhores práticas de desenvolvimento de SDKs;
+    \item desenvolvimento da SDK;
+    \item a validação de seu trabalho.
 \end{enumerate}
 
-Não obstante ter atingido o objetivo principal do trabalho, consistente no desenvolvimento de um SDK que atendesse a todos os requisitos não funcionais do projeto, os resultados obtidos sugerem que o framework Kotlin Multiplatform Mobile (KMM) não é recomendado para uso empresarial.
+Não obstante ter atingido o objetivo principal do trabalho, consistente no desenvolvimento de um SDK que atendesse a todos os requisitos não funcionais do projeto, os resultados obtidos sugerem que o \textit{framework} Kotlin Multiplatform Mobile (KMM) não é recomendado para uso empresarial.
 
-Contudo, em sua conclusão, EKE sugeriu que esse cenário provavelmente mudaria ao final do ano de 2019 com novas atualizações do Kotlin, tendo em vista que o maior motivo dos desafios do desenvolvimento utilizando esse \textit{framework} foi sua prematuridade. Ademais, acrescentou que, com a resolução desses pequenos desafios, o KMM se tornará o padrão para desenvolvimento multiplataforma para compartilhamento de regras de negócio \cite{multiplataformaMedicalKit}.
+Contudo, em sua conclusão, Eke (2019) sugeriu que esse cenário provavelmente mudaria ao final do ano de 2019 com novas atualizações do Kotlin, tendo em vista que o maior motivo dos desafios do desenvolvimento utilizando esse \textit{framework} foi sua prematuridade. Ademais, acrescentou que, com a resolução desses pequenos desafios, o KMM se tornará o padrão para desenvolvimento multiplataforma para compartilhamento de regras de negócio \cite{multiplataformaMedicalKit}.
 
 %===================================================================================================================
-O segundo trabalho relacionado propõe uma forma de desenvolvimento para aplicações multiplataforma que consiste na criação de duas aplicações específicas para cada plataforma e uma biblioteca, ou SDK, para compartilhamento de código comum \cite{multiplataforma-IEEE}. 
+Cheon (2019) propõe uma forma de desenvolvimento para aplicações multiplataforma que consiste na criação de duas aplicações específicas para cada plataforma e uma biblioteca, ou SDK, para compartilhamento de código comum. 
 
-Para avaliar a proposta foi realizado um estudo empírico em que o autor desenvolveu uma aplicação multiplataforma Java e Android e relatou sua opinião sobre os procedimentos aventados. Foi concluído que a abordagem mais prática para o desenvolvimento seria:
+Para avaliar a proposta, foi realizado um estudo empírico em que o autor desenvolveu uma aplicação multiplataforma Java e Android e relatou sua opinião sobre os procedimentos aventados. Foi concluído que a abordagem mais prática para o desenvolvimento seria:
 
 \begin{itemize}
-    \item Em caso de funcionalidades mais básicas e bem conhecidas: primeiro desenvolver para o SDK comum e despois para as aplicações específicas;
+    \item em caso de funcionalidades mais básicas e bem conhecidas: primeiro desenvolver para o SDK comum e despois para as aplicações específicas;
     
-    \item Em caso de funcionalidades complexas e não tão bem conhecidas: é melhor desenvolver para uma aplicação específica e, após solucionado o problema, generalizar a solução para exportá-la para o SDK comum e depois utilizar a solução genérica nas duas aplicações específicas.
+    \item em caso de funcionalidades complexas e não tão bem conhecidas: é melhor desenvolver para uma aplicação específica e, após solucionado o problema, generalizar a solução para exportá-la para o SDK comum e depois utilizar a solução genérica nas duas aplicações específicas.
 \end{itemize}
 Outros resultados e observações do autor são que o código dividido conforme a abordagem multiplataforma fica mais verboso, porém, 37\%~40\% do código foi reutilizado fazendo com que a manutenção fosse bem mais fácil e eficaz, podendo assim, aumentar a qualidade da aplicação.
   
@@ -38,7 +36,7 @@ O último trabalho relacionado faz uma análise comparativa entre o desenvolvime
     \item Quais são os efeitos do uso do KMM quanto à produtividade do desenvolvedor?
 \end{enumerate}
 
-Com o foco na resolução dessas questões EVERT definiu as métricas a serem utilizadas: tempo de inicialização da aplicação; tamanho em memória da aplicação; e, para análise de produtividade, a quantidade de linhas de código e o tempo de \textit{build} do projeto. Além disso definiu um projeto com utilidade real para sua avaliação ser mais fiel ao mercado. Seguindo o proposto, a autora atingiu seu objetivo, cujos resultados serão expostos de maneira resumida, para não fugir do escopo deste trabalho. Resultados:
+Com o foco na resolução dessas questões, Evert (2019) definiu as métricas a serem utilizadas: tempo de inicialização da aplicação; tamanho em memória da aplicação; e, para análise de produtividade, a quantidade de linhas de código e o tempo de \textit{build} do projeto. Além disso definiu um projeto com utilidade real para sua avaliação ser mais fiel ao mercado. Seguindo o proposto, a autora atingiu seu objetivo, cujos resultados serão expostos de maneira resumida, para não fugir do escopo deste trabalho. Os resultados encontrados são descritos a seguir:
 
 \begin{itemize}
     \item Tamanho da aplicação: a aplicação multiplataforma é um pouco maior do que a nativa para os dois sistemas operacionais. Mais especificamente, 13\% e 18\% maior no Android e iOS, respectivamente.
@@ -49,11 +47,11 @@ Com o foco na resolução dessas questões EVERT definiu as métricas a serem ut
     
     \item O tempo de \textit{build}: tanto em Android quanto em iOS houve acréscimo no tempo de \textit{build}.
 \end{itemize}
-Na conclusão, EVERT comenta que os ganhos de produtividade obtidos com a redução de linhas de código podem ser superados pela perda de produtividade ocasionada por tempos de \textit{build} maiores. Além disso, se o tamanho da aplicação e o tempo de inicialização forem essenciais para o projeto, KMM pode não ser a melhor opção a ser utilizada \cite{multiplataformaCross-plataform-diva}.
+Na conclusão, Evert (2019) comenta que os ganhos de produtividade obtidos com a redução de linhas de código podem ser superados pela perda de produtividade ocasionada por tempos de \textit{build} maiores. Além disso, se o tamanho da aplicação e o tempo de inicialização forem essenciais para o projeto, KMM pode não ser a melhor opção a ser utilizada \cite{multiplataformaCross-plataform-diva}.
 
 %==================================================================================================================
-O trabalho aqui desenvolvido, apesar de ter sido idealizado sem o conhecimento da já mencionada dissertação de EKE, \textit{"Design and development of a multi-platform software development kit of a mobile medical device"}, se assemelha bastante a ele, com algumas ressalvas. A arquitetura aqui proposta tem um embasamento teórico superior e visa atender domínios genéricos em que a solução KMM possa ser utilizada. Ademais, o trabalho de EKE será utilizado como referência para melhor análise do \textit{framework} KMM com a finalidade de verificar se a arquitetura pode ter uma maior dependência do KMM a fim de reutilizar mais partes de código ou não.
+O trabalho aqui desenvolvido, apesar de ter sido idealizado sem o conhecimento da já mencionada dissertação de Eke (2019), se assemelha bastante a ela, com algumas ressalvas. A arquitetura aqui proposta tem um embasamento teórico superior e visa atender domínios genéricos em que a solução KMM possa ser utilizada. Ademais, o trabalho de Eke (2019) será utilizado como referência para melhor análise do \textit{framework} KMM com a finalidade de verificar se a arquitetura pode ter uma maior dependência do KMM a fim de reutilizar mais partes de código ou não.
 
-Já o trabalho de CHEON demonstrou uma divisão de arquitetura baseada em componentes dependentes ou independentes da plataforma, porém, não a classificou quanto à termos comuns utilizados para se referenciar a camadas em arquitetura. Com isso, a arquitetura de seu trabalho ficou muito abrangente e de difícil reprodução para outros trabalhos. A arquitetura a ser proposta na Seção \ref{cap:novaArquitetura} será melhor detalhada e de mais fácil aplicação a qualquer domínio de problema.
+Já o trabalho de Cheon (2019) demonstrou uma divisão de arquitetura baseada em componentes dependentes ou independentes da plataforma, porém, não a classificou quanto à termos comuns utilizados para se referenciar a camadas em arquitetura. Com isso, a arquitetura de seu trabalho ficou muito abrangente e de difícil reprodução para outros trabalhos. A arquitetura a ser proposta na Seção \ref{cap:novaArquitetura} será melhor detalhada e de mais fácil aplicação a qualquer domínio de problema.
 
-Quanto ao trabalho de EVERT, apesar de não descrever nenhum tipo de arquitetura, foi utilizado para conhecimento sobre o \textit{framework} KMM que, não obstante já ter sido lançado oficialmente, ainda possui alguns desafios, como mencionados por EKE\cite{multiplataformaMedicalKit}.
+Quanto ao trabalho de Evert (2019), apesar de não descrever nenhum tipo de arquitetura, foi utilizado para conhecimento sobre o \textit{framework} KMM que, não obstante já ter sido lançado oficialmente, ainda possui alguns desafios, como mencionados por Eke (2019).

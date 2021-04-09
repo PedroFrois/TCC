@@ -1,22 +1,22 @@
-\chapter[Introdução à nova arquitetura]{Introdução à nova arquitetura}
+\chapter[Descrição Preliminar da Arquitetura Proposta]{Descrição Preliminar da Arquitetura Proposta}
 \label{cap:novaArquitetura}
 
-A proposta da nova arquitetura tomou como base principalmente outras duas, a Model-View-Viewmodel (MVVM) e a \textit{Clean Architecture} \cite{arquiMVVMGoogle, arquiCleanArch}. Essas duas arquiteturas serão descritas nas subseções \ref{sec:mvvm} e \ref{sec:clean}, entretanto para um melhor entendimento é recomendado a leitura referenciada para cada uma.
+A proposta da nova arquitetura tomou como base principalmente outras duas, a \textit{Model-View-ViewModel} (MVVM) e a \textit{Clean Architecture} \cite{arquiMVVMGoogle, arquiCleanArch}. Essas duas arquiteturas serão descritas nas seções \ref{sec:mvvm} e \ref{sec:clean}, entretanto para um melhor entendimento é recomendado a leitura referenciada de cada uma.
 
 \section{Arquitetura \textit{Model-View-Viewmodel}}
 \label{sec:mvvm}
 
-É uma arquitetura criada por Ken Cooper e Ted Peters e atualmente é a recomendada pela Google para desenvolvimento de aplicações nativas em Android. Antes de 2010, a arquitetura recomendada era a Model-View-Controller, mas por dificuldades de manutenção e testes, a Google passou a recomendar a MVVM ou Model-View-Presenter. No artigo "\textit{A comparison of Android Native App Architecture MVC, MVP and MVVM}", foi feita a comparação entre as 3 arquiteturas e foi concluído que tanto a MVVM quanto MVP possuem ganhos significativos em comparação com a MVC. Já entre MVVM e MVP, não houve uma resposta clara de qual era a melhor, mas foi concluído que MVVM é mais facilmente testável enquanto a MVP tinha uma manutenibilidade melhor \cite{arquiMVVM, arquiMVVMGoogle}.
+Trata-se de uma arquitetura criada por Ken Cooper e Ted Peters, sendo atualmente recomendada pela Google para o desenvolvimento de aplicações nativas em Android. Anteriormente, até 2010, a arquitetura recomendada era a \textit{Model-View-Controller}, mas, por dificuldades de manutenção e testes, a Google passou a recomendar a MVVM ou \textit{Model-View-Presenter}. Por meio do artigo "\textit{A comparison of Android Native App Architecture MVC, MVP and MVVM}", foi realizada a comparação entre as 03 (três) arquiteturas, ocasião na qual conclui-se que tanto a MVVM quanto MVP possuem ganhos significativos quando comparadas com a MVC. Já entre MVVM e MVP, não houve uma resposta clara acerca de qual seria a melhor, mas foi concluído que MVVM é mais facilmente testável, enquanto a MVP tinha uma manutenibilidade melhor \cite{arquiMVVM, arquiMVVMGoogle}.
 
-Dado o exposto, a escolha entre MVVM e MVP se baseiam no domínio do problema e um consenso entre os desenvolvedores de qual a característica mais relevante para seu projeto. Todavia, sistemas em que testes são realizados mais facilmente são mais bem testados, logo, possuem menos erros críticos em produção e, com isso, as manutenções que serão realizadas para correção de erros dispõem de um tempo maior para serem realizadas devido à baixa criticidade dessas alterações. Com isso, a arquitetura MVVM foi a escolhida para ser utilizada como uma das inspirações dessa nova arquitetura que será apresentada na subseção \ref{sec:description}.
+Dado o exposto, tem-se que a escolha entre MVVM e MVP se baseiam no domínio do problema e no consenso entre os desenvolvedores a respeito de qual característica é a mais relevante para seu projeto. Todavia, sistemas em que testes são realizados mais facilmente são melhor testados, logo, possuem menos erros críticos em produção, de forma que as manutenções que serão realizadas para correção de tais erros dispõem de um tempo maior. Deste modo, a arquitetura MVVM foi a escolhida para ser utilizada como uma das inspirações dessa nova arquitetura que será apresentada na subseção \ref{sec:description}.
 
-A representação de alto nível da arquitetura pode ser observada na Figura \ref{fig:mvvm}. Logo, podemos fazer a relação que a \textit{View} e a view model, representados na figura por \textit{Activity/Fragment} e \textit{ViewModel}, respectivamente, são responsáveis pela visualização e lógica de visualização do \textit{software}. Já o agrupamento do \textit{Repository}, \textit{Model} e \textit{Remote Data Source}, gerenciam as partes de modelo de dados, regras de negócio, requisição de dados, local e remoto. Esse agrupamento foi abstraído para o nome \textit{Model} que está presente no nome da arquitetura. 
+A representação de alto nível da arquitetura pode ser observada na Figura \ref{fig:mvvm}. A partir dela, é possível compreender que a \textit{View} e a \textit{ViewModel}, representados, respectivamente, na figura por \textit{Activity/Fragment} e \textit{ViewModel}, são responsáveis pela visualização e lógica de visualização do software. Já o agrupamento do \textit{Repository}, \textit{Model} e \textit{Remote Data Source} gerenciam as partes de modelo de dados, regras de negócio e requisição de dados local e remoto. Esse agrupamento foi abstraído para o nome \textit{Model}, que está presente no nome da arquitetura. 
 
 
 \begin{figure}[h]
     \caption{Arquitetura Model-View-Viewmodel}
     \centering
-    \includegraphics[width=1\textwidth]{img/mvvm.png}
+    \includegraphics[width=.85\textwidth]{img/mvvm.png}
     \fonte{\cite{arquiMVVMGoogle}}
     \label{fig:mvvm}
 \end{figure}
@@ -25,9 +25,9 @@ A representação de alto nível da arquitetura pode ser observada na Figura \re
 \section{Arquitetura Limpa - \textit{Clean Architecture}}
 \label{sec:clean}
 
-A \textit{Clean Architecture} ou Arquitetura Limpa foi desenvolvida por Robert Martin \cite{arquiCleanArch}. Essa arquitetura tem como foco a \textit{Separation of Concerns}, ou Separação de Conceitos, de modo que todos os conceitos SOLID explicados anteriormente sejam seguidos. Ademais, promove a "[..] implementação de sistemas que favorecem reusabilidade de código, coesão, independência de tecnologia e testabilidade." \cite{arquiEngSoftModerna}.
+A \textit{Clean Architecture} ou Arquitetura Limpa foi desenvolvida por Robert Martin \cite{arquiCleanArch} tem como foco a \textit{Separation of Concerns}, ou Separação de Conceitos, fazendo com que todos os conceitos SOLID explicados anteriormente sejam seguidos. Ademais, promove a "[...] implementação de sistemas que favorecem reusabilidade de código, coesão, independência de tecnologia e testabilidade." \cite{arquiEngSoftModerna}.
 
-Essa arquitetura utiliza-se de outras arquiteturas conhecidas como: Arquitetura Hexagonal \cite{freeman2009growing}, DCI \cite{reenskaug2009dci} e BCE \cite{jacobson1993object}. Todas elas abordam o conceito de divisão de camadas a fim de atingirem os mesmos objetivos, são arquiteturas: 
+Essa arquitetura utiliza-se de outras arquiteturas conhecidas como: Arquitetura Hexagonal \cite{freeman2009growing}, DCI \cite{reenskaug2009dci} e BCE \cite{jacobson1993object},as quais abordam o conceito de divisão de camadas a fim de atingirem os mesmos objetivos. São arquiteturas: 
 
 \begin{itemize}
     \item Independentes de \textit{frameworks};
@@ -37,9 +37,9 @@ Essa arquitetura utiliza-se de outras arquiteturas conhecidas como: Arquitetura 
     \item Independente de qualquer fator externo.
 \end{itemize}
 
-Segundo Martin, a Arquitetura Limpa surgiu da "integração de todas essas arquiteturas em uma única ideia executável". Com isso, é de fácil compreensão o motivo da Arquitetura Limpa ter servido de inspiração para a que será exposta na subseção \ref{sec:description}.
+Segundo Martin, a Arquitetura Limpa surgiu da "integração de todas essas arquiteturas em uma única ideia executável" \cite{arquiCleanArch}. Com isso, é de fácil compreensão o motivo pelo o qual a Arquitetura Limpa serviu de inspiração para a que será exposta na subseção \ref{sec:description}.
 
-Para entender a Arquitetura Limpa pode-se observar a Figura \ref{fig:clean}. A ideia geral por trás da arquitetura é ter camadas centrais que são raramente alteradas e desconhecem as camadas externas a elas. E quanto mais externa, mais concreta e ligada à plataforma de uso é a camada. Exemplificando: as entidades são representações de estruturas do domínio de seu \textit{software}, então independente de qualquer linguagem, programa, plataforma ou qualquer decisão nesse sentido, as entidades de seu programa não serão alteradas. Essa dinâmica é representada na Figura \ref{fig:cleanCone}.
+Para entender a Arquitetura Limpa, pode-se observar a Figura \ref{fig:clean}. A ideia geral por trás da arquitetura é ter camadas centrais que são raramente alteradas e desconhecem as camadas externas a elas. Quanto mais externa, mais concreta e ligada à plataforma de uso é a camada. Exemplificando: as entidades são representações de estruturas do domínio de seu software, então, independente de qualquer linguagem, programa, plataforma ou qualquer decisão nesse sentido, as entidades de seu programa não serão alteradas. Essa dinâmica é representada na Figura \ref{fig:cleanCone}.
 
 \begin{figure}[h]
     \caption{Clean Architecture - Arquitetura Limpa}
@@ -61,16 +61,16 @@ Para entender a Arquitetura Limpa pode-se observar a Figura \ref{fig:clean}. A i
 
 \section{Descrição da arquitetura proposta}
 \label{sec:description}
-A arquitetura MVVM, já utilizada e verificada pelo uso público, foi utilizada em uma abstração genérica para a divisão da arquitetura em dois grandes módulos. O primeiro módulo é o \textit{Model} que representa toda a parte de entidades e regras de negócio. O segundo é a junção da \textit{View} e \textit{ViewModel} de forma q exista um módulo específico e responsável pela visualização e regras de apresentação ao usuário.
+A arquitetura proposta será divida em dois grandes módulos, a partir de uma abstração genérica da arquitetura MVVM, já utilizada e verificada pelo uso público. Neste modelo de inspiração, o primeiro módulo é o \textit{Model}, que representa toda a parte de entidades e regras de negócio, enquanto o segundo é a junção da \textit{View} e \textit{ViewModel} de forma que exista um módulo específico e responsável pela visualização e regras de apresentação ao usuário.
 
-Já a Arquitetura Limpa foi usada como inspiração para detalhar mais a fundo as camadas internas e suas responsabilidades. Isso foi feito para garantir uma definição melhor e mais prática do que será contido em cada módulo para facilitar o entendimento e reprodução da arquitetura.
+Já a inspiração na Arquitetura Limpa se deu para detalhar mais a fundo as camadas internas e suas responsabilidades, a fim de garantir uma definição melhor e mais prática do que será contido em cada módulo para facilitar o entendimento e reprodução da arquitetura.
 
-De forma genérica e, por enquanto, abstrata a arquitetura foi definida em dois grandes módulos, conforme na Figura \ref{fig:propostaArquitetura}, que podem ser definidos em:
+De forma genérica e, por enquanto, abstrata, os dois módulos da arquitetura proposta, conforme se visualiza na Figura \ref{fig:propostaArquitetura}, podem ser definidos em:
 
 \begin{enumerate}
-    \item \textit{Domain}: o análago ao Model da arquitetura MVVM. Além disso, utilizando-se de princípios da Arquitetura Limpa, ele é o módulo central da arquitetura de forma que deverá ser totalmente independente da plataforma de implementação. Com isso ele poderá sem completamente intercambiável entre Android e iOS. Ou seja, ele será a representação da multiplataforma nessa arquitetura.
+    \item \textit{Domain}: análago ao Model da arquitetura MVVM e utilizando-se dos princípios da Arquitetura Limpa, ele é o módulo central da arquitetura, de forma que deverá ser totalmente independente da plataforma de implementação. Com isso, ele poderá sem completamente intercambiável entre Android e iOS, de modo que consistirá na representação da multiplataforma nessa arquitetura.
     
-    \item \textit{Presentation}: é o modulo responsável pela apresentação e regras de interação com o usuário. Ele é totalmente dependente da plataforma que se está utilizando e, para um desenvolvimento Multiplataforma no contexto Android e iOS, tudo que for implementado dentro desse módulo para Android deverá ser reimplementado em iOS.
+    \item \textit{Presentation}: é o modulo responsável pela apresentação e regras de interação com o usuário. Ele é totalmente dependente da plataforma que se está utilizando de modo que, para um desenvolvimento multiplataforma no contexto Android e iOS, tudo que for implementado dentro desse módulo para Android deverá ser reimplementado para iOS.
 \end{enumerate}
 
 \begin{figure}[h]
