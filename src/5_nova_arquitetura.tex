@@ -63,6 +63,20 @@ Para entender a Arquitetura Limpa, pode-se observar a Figura \ref{fig:clean}. A 
 \section{Fundamentos de decisão de projeto}
 \label{sec:Fundamentos}
 
+Nesta seção serão elencados os principais fundamentos para as decisões de projeto que foram tomadas para o desenvolvimento da arquitetura proposta.
+
+Conforme mencionado na seção \ref{sec:mvvm}, a arquitetura MVVM é facilmente testável e a atualmente recomendada pela google, porém possui a falha de não ter uma manutenibilidade tão boa quanto à MVP \cite{arquiMVVM}.
+
+Com intuito de ter uma arquitetura facilmente testável, porém também com fácil manutenção, objetiva-se fazer uma adaptação da MVVM ao mesclar com a arquitetura Limpa. Ao realizar essa mescla, a Separação de Conceitos da arquitetura Limpa ajudará com a aplicação de todos os princípios SOLID \cite{arquiCleanArch}.
+
+Além dos princípios SOLID, outros pontos relevantes para a fundamentação da arquitetura são: 
+
+\begin{itemize}
+    \item padrão de projeto \textit{Observer}: esse padrão de projeto possibilita a comunicação intermodular reduzindo o acoplamento uma vez que somente o módulo observador precisa conhecer o módulo observado.
+    \item telas sem textos ou valores padrão fixos: com esses dados sendo injetados por um módulo específico ou sendo enviados pelo \textit{back-end}, a manutenção torna-se mais simples e dinâmica para qualquer plataforma que consuma esse módulo. A manutenção será feita somente em um local ao invés de dois (no caso de plataformas Android e iOS).
+    \item padronizar a criação de novas telas: facilita a manutenção uma vez que, o fluxo de criação e todas as classes referentes a cada funcionalidade, possuem o mesmo padrão de desenvolvimento e estrutural.
+\end{itemize}
+
 
 \newpage
 
