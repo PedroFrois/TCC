@@ -1,4 +1,4 @@
-\chapter[Descrição da Arquitetura Proposta]{Descrição da Arquitetura Proposta}
+\chapter[Arquitetura Proposta]{Arquitetura Proposta}
 \label{cap:novaArquitetura}
 
 A proposta da nova arquitetura tomou como base principalmente outras duas, a \textit{Model-View-ViewModel} (MVVM) e a \textit{Clean Architecture} \cite{arquiMVVMGoogle, arquiCleanArch}. Essas duas arquiteturas serão descritas nas seções \ref{sec:mvvm} e \ref{sec:clean}, entretanto para um melhor entendimento é recomendado a leitura referenciada de cada uma.
@@ -78,20 +78,48 @@ Além dos princípios SOLID, outros pontos relevantes para a fundamentação da 
 \end{itemize}
 
 
+\subsection{Arquitetura movida a estados}
+
+Uma arquitetura movida a estados aumenta a segurança do software por ter regras bem definidas para cada estado do software \cite{arquiEstados}. O padrão de projeto \textit{State} é a base dessa proposta e para a utilização dele na arquitetura foi definido os seguintes estados para uma tela: Carregando, Erro, Sucesso e Ocioso. A utilização de cada estado se dá por:
+
+\begin{itemize}
+    \item Carregando: a tela está aguardando atualização de dados.
+    \item Erro: a atualização de dados terminou com falha.
+    \item Sucesso: a atualização de dados terminou com sucesso.
+    \item Ocioso: aguardando \textit{input} do usuário após estado Sucesso.
+\end{itemize}
+
+O fluxo de estados está exemplificado da figura MAQUINHA ESTADOS. Com ele pode-se garantir que telas padronizadas de carregamento e de erro não serão exibidas incorretamente para o usuário.
+
+Outra parte importante é que toda alteração de estado deverá ser enviada para um \textit{stream} ou fluxo de estados. Esse fluxo é observado a fim de que clientes desse fluxo, sejam notificados dessa atualização. O padrão de projeto \textit{Observer} foi utilizado nesse caso. O benefício dele é o baixo acoplamento entre o fluxo observado, A, e o observador, B, de forma que A não precisa conhecer ou ser dependente do B.
+
+Ademais, toda tela deverá ter um modelo de dados que a represente por inteiro. Por exemplo, um tela que possua título, texto e um botão, deverá ter um modelo de dados que tenha uma propriedade para armazenar seu título, texto e o texto do botão. Dessa forma as informações poderão vir de provedores de informação, conforme será abordado na subseção \ref{sub:provedores}. Além dessas propriedades todo modelo de dados que represente uma tela deverá possuir um campo \textit{status} que representará o estado atual da tela (Carregando, Erro, Sucesso e Ocioso). O exemplo dado pode ser observado na figura LINKAR FIGURA MODELO TELA COM STATUS.
+
+\subsection{Regras de negócio são compartilhadas}
+Para evitar implementações diferentes em cada app, as regras de negócio deverão pertencer à parte compartilhada do código. 
+
+Ex: Uma plataforma faz a validação para ver se o usuário possui credencial de acesso a uma certa funcionalidade, enquanto outra plataforma esquece dessa implementação.
+
+\subsection{Provedores de informação}
+\label{sub:provedores}
+
+Interface vs Implementação
+
+
+
+
 \newpage
 
 \section{Descrição da arquitetura proposta}
 \label{sec:description}
 A arquitetura proposta será divida em dois grandes módulos, a partir de uma abstração genérica da arquitetura MVVM, já utilizada e verificada pelo uso público. Neste modelo de inspiração, o primeiro módulo é o \textit{Model}, que representa toda a parte de entidades e regras de negócio, enquanto o segundo é a junção da \textit{View} e \textit{ViewModel} de forma que exista um módulo específico e responsável pela visualização e regras de apresentação ao usuário.
 
-Já a inspiração na Arquitetura Limpa se deu para detalhar mais a fundo as camadas internas e suas responsabilidades, a fim de garantir uma definição melhor e mais prática do que será contido em cada módulo para facilitar o entendimento e reprodução da arquitetura.
-
 De forma genérica e, por enquanto, abstrata, os dois módulos da arquitetura proposta, conforme se visualiza na Figura \ref{fig:propostaArquitetura}, podem ser definidos em:
 
 \begin{enumerate}
-    \item \textit{Domain}: análago ao Model da arquitetura MVVM e utilizando-se dos princípios da Arquitetura Limpa, ele é o módulo central da arquitetura, de forma que deverá ser totalmente independente da plataforma de implementação. Com isso, ele poderá ser completamente intercambiável entre Android e iOS, de modo que consistirá na representação da multiplataforma nessa arquitetura.
+    \item \textit{Presentation}: é o modulo responsável pela apresentação e regras de interação com o usuário. Ele é totalmente dependente da plataforma que se está utilizando. De modo que, para um desenvolvimento multiplataforma no contexto Android e iOS, tudo que for implementado dentro desse módulo para Android deverá ser reimplementado para iOS.
     
-    \item \textit{Presentation}: é o modulo responsável pela apresentação e regras de interação com o usuário. Ele é totalmente dependente da plataforma que se está utilizando de modo que, para um desenvolvimento multiplataforma no contexto Android e iOS, tudo que for implementado dentro desse módulo para Android deverá ser reimplementado para iOS.
+    \item \textit{Domain}: baseado no Model da arquitetura MVVM e utilizando-se dos princípios da Arquitetura Limpa. Ele é o módulo central da arquitetura, de forma que deverá ser totalmente independente da plataforma de implementação. Com isso, poderá ser completamente intercambiável entre Android e iOS, de modo que consistirá na representação multiplataforma nessa arquitetura.
 \end{enumerate}
 
 \begin{figure}[h]
@@ -101,3 +129,7 @@ De forma genérica e, por enquanto, abstrata, os dois módulos da arquitetura pr
     \fonte{Própria}
     \label{fig:propostaArquitetura}
 \end{figure}
+
+\subsection{Visão por estrutura}
+
+\subsection{Casos de uso}
