@@ -96,17 +96,18 @@ Outra parte importante é que toda alteração de estado deverá ser enviada par
 Ademais, toda tela deverá ter um modelo de dados que a represente por inteiro. Por exemplo, um tela que possua título, texto e um botão, deverá ter um modelo de dados que tenha uma propriedade para armazenar seu título, texto e o texto do botão. Dessa forma as informações poderão vir de provedores de informação, conforme será abordado na subseção \ref{sub:provedores}. Além dessas propriedades todo modelo de dados que represente uma tela deverá possuir um campo \textit{status} que representará o estado atual da tela (Carregando, Erro, Sucesso e Ocioso). O exemplo dado pode ser observado na figura LINKAR FIGURA MODELO TELA COM STATUS.
 
 \subsection{Regras de negócio são compartilhadas}
-Para evitar implementações diferentes em cada app, as regras de negócio deverão pertencer à parte compartilhada do código. 
 
-Ex: Uma plataforma faz a validação para ver se o usuário possui credencial de acesso a uma certa funcionalidade, enquanto outra plataforma esquece dessa implementação.
+Considerando que o funcionamento de qualquer aplicação, independente do sistema operacional, deva funcionar de acordo com as mesmas regras de negócio. É de fácil compreensão que o compartilhamento das regras de negócio beneficiará o desenvolvimento e a manutenção da aplicação. Seguindo essa proposta, o código será desenvolvido somente uma vez e, dessa forma, também deverá ser alterado somente em um local para qualquer tipo de manutenção. Ademais, ao se utilizar uma mesma fonte para todas as regras de negócio, uma atenção maior poderá ser dada à esse desenvolvimento, assim reduzindo a quantidade de \textit{bugs} presentes nessa parte.
+
 
 \subsection{Provedores de informação}
 \label{sub:provedores}
 
-Interface vs Implementação
+É comum que textos exibidos em tela e valores padrão sejam fixados nas aplicações móveis. Contudo, isso torna as aplicações mais rígidas e intolerantes a simples alterações ortográficas ou novas decisões de implementação. São exemplos dessas alterações: correção de um erro ortográfico; modificação de uma frase que está confundindo os usuários; ou usuários eram limitados a criar um apelido de no máximo 5 caracteres passaram a poder utilizar até 10 caracteres. Todas essa situação acarretam no lançamento de uma nova versão do aplicativo, lançamento que é um processo custoso e depende da aprovação dos reguladores das lojas dos aplicativos (Google no caso de Android e Apple no caso de iOS).
 
+Como solução do problema, foi-se utilizado a ideia de "provedores de informação". Esses provedores são responsáveis por realizar chamadas ao \textit{back-end} para que ele retorne as infromações para os aplicativos. Essas informações seriam: títulos, textos, valores das \textit{labels} de formulários, valores padrão de objetos (todo usuário começará com o apelido igual ao seu primeiro nome, ou limite máximo de caracteres no apelido) e etc. Com isso, o custo de ter que lançar todo um app novo para realizar essas pequenas alterações é evitado. Além disso é garantido que todos esses valores serão os mesmos para qualquer plataforma.
 
-
+Um ponto de observação é que nem toda equipe irá aceitar a proposta do \textit{back-end for front-end} mencionada no parágrafo anterior. A sugestão nesse caso seria continuar utilizando um "provedor de informação", porém que busque esses valores em um local fixo. Dessa forma o aplicativo continuará se beneficiando da centralização desses valores, de forma que qualquer plataforma consuma de um mesmo local, porém com o custo de ter que lançar uma nova versão do app para esse tipo de alteração.
 
 \newpage
 
@@ -131,5 +132,38 @@ De forma genérica e, por enquanto, abstrata, os dois módulos da arquitetura pr
 \end{figure}
 
 \subsection{Visão por estrutura}
+Seguindo a descrição da arquitetura será apresentado agora uma visão por estruturas. Com ela será possível compreender as responsabilidades individuais de cada módulo. Na figura FIGURA ESTRUTURA é exibida a primeira divisão da arquitetura. Cada uma das estruturas serão explicadas a seguir.
+
+IMAGEM
+
+\textit{View} é a estrutura que representa o Presentation da figura \ref{fig:propostaArquitetura}, porém com um nome que se aproxima dos utilizados em desenvolvimento. Assim como o Presentation, ela representa a parte exclusiva de cada plataforma, com isso, sua organização interna pode ser modificada para atender melhor cada uma. Por exemplo, em Android, a divisão em \textit{Fragment} e \textit{ViewModel} é bem comum e recomendada pela Google, então a estrutura \textit{View} será dividida em outras duas: \textit{Fragment} e \textit{ViewModel}; já em iOS a \textit{Viem} pode ser representada por somente uma estrutura, a \textit{ViewController}. Sendo assim, essa estrutura deverá somente receber interações do usuário e repassá-las para o \textit{Interactor}. E, como comentado anteriormente, deverá observar o \textit{Interactor} para reagir às atualizações de estado.
+
+\textit{Interactor} é estrutura de entrada para a parte compartilhada do código. É somente com ela que a parte exclusiva de cada SO deverá se comunicar. Para que essa comunicação seja realizada é no interactor que o fluxo de estados está. Em outras palavras o \textit{Interactor} é a parte observada e a \textit{View} é o observador do padrão \textit{Observer} comentado anteriormente. Além disso, para realizar as atualizações de estado com as ações informadas pela \textit{View} é necessário que o \textit{Interactor} conheça toda a regra de negócio. Seguindo assim, ele é a estrutura compartilhada responsável por manter a integridade das ações do usuário de acordo com a regras de negócio estabelecidas.
+
+\textit{Model} é a estrutura central da aplicação. Ela representa todos os modelos de dados da aplicação, e, assim como foi comentado anteriormente, toda tela deverá ter um modelo de dados que a represente por inteiro. Dessa forma esse modelo de dados é o que será utilizado para manter os estados no fluxo de estados presente no \textit{Interactor}. Ademais, por ser o centro da aplicação, ela pode ser acessada por todas as estruturas, contudo, para o correto funcionamento da arquitetura, somente o \textit{Interactor} deverá atualizar esse modelo com novas informações.
+
+\textit{Provider} são os "provedores de informação" comentados na subseção CITAR CUBSEÇÂO. Eles são os reponsáveis por conhecer implementações de requisições ao \textit{back-end}, banco de dados, possuir dados fixos\footnote{Como comentado anteriormente, se a equipe não optar por utilizar o \textit{back-end for front-end} dados fixos num provedor de informações é uma solução superior a dados fixos na parte não compartilhada do código}, e etc. Nessa primeira instância a estrutura foi unida em uma só, porém ela será subdividida em interface e implementação. Essa divisão será feita para aplicar o princípio de Inversão de Dependência, uma vez que torna o \textit{Interactor}, camada central, independente da implementação de seu "provedor de informação".
+
+Dado a explicação teórica de cada estrutura, será apresentado a seguir um caso de uso da arquitetura proposta.
 
 \subsection{Casos de uso}
+
+Serão apresentados 3 casos de uso para essa arquitetura. Todos os casos são referentes a aplicativo bancário e de simples entendimento. O primeiro caso é sobre a funcionalidade de transferência em que o usuário abre a tela de transferência em seu aplicativo, insere o valor que deseja transferir e clica no botão para realizar a transferência. O segundo é uma tela utilizada para consultar o saldo presente na conta corrente do usuário. Nele o usuário simplesmente abre a tela para consultar seu saldo, o qual deverá ser atualizado com um serviço remoto. No terceiro caso de uso será apresentando o \textit{onboarding} do aplicativo em que o usuário receberá informações de como utilizar o app. Como decisão prévia esse \textit{Onboarding} deverá ser realizado somente quando for a primeira vez do usuário ao acessar o app no dispositivo. Para atender essa demanda a visualização do \textit{onboarding} será salva em um banco local no dispositivo do usuário.
+
+Primeiro caso de uso, transferência. Na figura CITAR TRANSFERNECIA pode-se observar que a estrutura \textit{View} foi adaptada para uso de acordo com cada plataforma. Em Android temos que ela foi subdividida em TransferenciaFragment e TransferenciaViewModel; já no iOS temos somente uma classe para TranferênciaViewController. Tanto iOS quanto Android irão se comunicar com o \textit{Interactor} por meio da função \textit{onTransfer()}. O \textit{Interactor} realizará validações seguindo a regra de negócio, por exemplo, conferir se o valor a ser transferido está no intervalo maior que zero e menor ou igual ao valor disponível para transferência; após essa validação atualizará seu estado para Carregando e irá executar a função \textit{transfer()} da interface TransferenciaProvider. Essa função é implementada pela TransferenciaProviderRemote que irá efetivamente realizar o pedido de transferência ao serviço externo. Ao receber a resposta do serviço, a retornará para o \textit{Interactor} que, em caso de sucesso, atualiza seu estado para Sucesso e, caso contrário, atualiza seu estado para Erro; de forma que TransferenciaViewModel e TransferenciaViewController possam reagir à atualização de estados. Nesse processo todo o modelo de dados TransferenciaScreen será utilizado para atualizar os estados no TransferenciaInteractor.
+
+IMAGEM
+
+Ainda no primeiro caso de uso, mas para uma melhoria proposta têm-se a figura CITAR IMAGEM. Nela observa-se que cada um das classes e interfaces estendem de sua respectiva classe base. Essa classe base é utilizada para realizar comportamentos comuns à toda estrutura de seu tipo. Por exemplo, a classe BaseFragment pode ser utilizada para ocultar o processo de inflar os \textit{layouts} em Android; o BaseInteractor pode ser utilizada para iniciar o fluxo de estados; o BaseScreen para conter a propriedade \textit{Status}, que é pertinente para todos os modelos de tela. Esse processo de criação de classes base aumenta a qualidade estática do software uma vez que oculta e evita repetições de processos. Com isso, o princípio Aberto/Fechado é atendido uma vez que novas funcionalidades são incluídas a partir de novo código e sem a alteração de código já existente conforme será exemplificado no próximo caso de uso.
+
+IMGEM BASE
+
+Segundo caso de uso, consulta saldo. A separação de estrutura e criação de classes foi feita da mesma forma que o primeiro caso de uso. As estruturas de classes continuam as mesmas, tanto que a figura CITAR CONSULT só se difere da figura CITAR TRANS no prefixo das classes, onde estava escrito Transferencia está agora escrito ConsultaSaldo. Essa é uma observação relevante a ser feita, pois demonstra que a arquitetura continua exatamente a mesma para um outro caso de uso, em outras palavras, uma funcionalidade pode ser utilizada como \textit{template} para outra. Agora, para uma visualização de forma integrada do primeiro caso de uso com o segundo, pode-se observar a figura (CITAR INTEGRAÇÂO)
+
+IMAGEM BASE CON
+
+IAMGE BASE INTEGRADO
+
+Terceiro caso de uso, \textit{onboarding}. De acordo com o plano para essa funcionalidade, o aplicativo necessitará de acesso a um banco local que não foi mapeado nos exemplos anteriores. Com isso podemos verificar a facilidade de inclusão de novos módulos que a Arquitetura Limpa e os princípios SOLID trazem. Toda a funcionalidade de \textit{onboarding} será parecida com os outros dois casos de uso. Terá a implementação da \textit{View} de acordo com seu SO, um \textit{Interactor}, um modelo de dados que represente a tela e uma interface provedora de informações. Contudo, a implementação dessa interface será incluída num novo módulo de provedores locais. A figura CITAR INTEGRAÇÂO COMPLETA mostra que essa nova integração não altera em nada os módulos já existentes que continuam a existir sem o conhecimento que um novo módulo foi incluído.
+
+IMAGEM INTEGRAÇAÔ COMPLETA
